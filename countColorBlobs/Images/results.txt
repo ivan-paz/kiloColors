@@ -1,0 +1,5 @@
+out003.jpg, green, 23
+out003.jpg, blue, 16
+out002.jpg, red, 39
+out007.jpg, green, 39
+out006.jpg, blue, 39

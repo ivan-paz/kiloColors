@@ -65,8 +65,8 @@ def write_to_file(text):
          f.write(text + "\n")
          f.close()
 
+path = os.chdir('./Images')
 
-path = './Images'
 files = os.listdir(path)
 print(files)
 color_blobs = []
