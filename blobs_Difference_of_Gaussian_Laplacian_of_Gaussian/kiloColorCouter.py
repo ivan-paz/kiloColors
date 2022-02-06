@@ -16,7 +16,7 @@ print('-------------------------------------------')
 
 os.system("python count_blobs_extract_mean_color_difference_of_Gaussian.py")
 
-os.system("time python ultimateCounter.py")
+os.system("time python countDifferenceOfGaussian.py")
 
 if os.path.exists('results_difference_of_gaussian.txt'):
     os.remove('results_laplace_of_gaussian.txt')
