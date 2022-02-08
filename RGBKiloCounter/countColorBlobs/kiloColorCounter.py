@@ -12,6 +12,8 @@ try:
     print('')
 except IndexError:
     print('Please provide the number of kilobots you expect to track!')
+    print(' ')
+    print('Usage: python kiloColorCounter <number of kilobots> ')
     sys.exit(1)
 
 # remove images in the folder

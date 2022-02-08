@@ -27,15 +27,16 @@ df = pandas.read_csv('results_difference_of_gaussian.txt')
 # create a column with the sum of kilobots grouping by "image"
 df['total_kilobots'] = df.groupby('image')['kilobots'].transform('sum')
 # displaying the contents of the CSV file
-print(df.head(50))
+print(df.to_string())
 print('original data base')
 
 df_kilobots = df[df['total_kilobots'] != kilobots].dropna()
-df_kilobots_1 = df[df['total_kilobots'] != kilobots+1].dropna()
+df_kilobots_1 = df_kilobots[df_kilobots['total_kilobots'] != kilobots+1].dropna()
 #problematic = df[df['total_kilobots'] == kilobots & df['total_kilobots'] == kilobots + 1]#.dropna()
-problematic = pandas.concat([df_kilobots,df_kilobots_1],axis=0)
-
-print(problematic.head(100))
+problematic = df_kilobots_1
+print('problematic images: ')
+print(problematic.to_string())
+print('---------------------------------------------------------')
 
 for i in problematic['image'].unique():
     print(i)
@@ -44,13 +45,10 @@ for i in problematic['image'].unique():
     shutil.copyfile(src, dst)
     print("Image " + str(i) + " has been copied to problematicImages")
 
-# write the correctly counted into results.txt 
-#def write_to_file(text):
-#     with open('./results.txt', 'a') as f:
-#         f.write(text + "\n")
-#         f.close()
+k1 = df[df['total_kilobots'] == kilobots ].dropna()  
+k2 = df[df['total_kilobots'] == kilobots+1 ].dropna()
+correctly_counted = pandas.concat([k1,k2],axis=0)
 
-correctly_counted = df[df['total_kilobots'] == kilobots ].dropna()
 with open('results.txt', 'a') as f:
     dfAsString = correctly_counted.to_string(header=False, index=False)
     f.write(dfAsString)

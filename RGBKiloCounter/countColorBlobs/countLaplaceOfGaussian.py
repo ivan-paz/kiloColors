@@ -26,8 +26,8 @@ df['total_kilobots'] = df.groupby('image')['kilobots'].transform('sum')
 print(df)
 #evil = df[df['total_kilobots'] == mask ].dropna()
 df_kilobots = df[df['total_kilobots'] != kilobots].dropna()
-df_kilobots_1 = df[df['total_kilobots'] != kilobots+1].dropna()
-evil = pandas.concat([df_kilobots,df_kilobots_1],axis=0)
+df_kilobots_1 = df_kilobots[df_kilobots['total_kilobots'] != kilobots+1].dropna()
+evil = df_kilobots_1
 #evil = df[ df['total_kilobots'] == kilobots & df['total_kilobots'] == kilobots + 1 ]#.dropna()
 print(evil)
 
