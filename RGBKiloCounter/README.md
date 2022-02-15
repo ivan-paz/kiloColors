@@ -1,6 +1,7 @@
 # kiloCounter 
 
-Execute python kiloColorCounter.py <number of kilobots to track>
+
+Execute python kiloColorCounter.py \<number of kilobots to track\>
 
 Images/ contains the images to analyze.
 
