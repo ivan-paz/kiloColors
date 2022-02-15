@@ -2,9 +2,18 @@
 
 ## Quick start
 1. install scikit-image library (this depends on your operation system)
-1.1 You might also install pandas and shutil libraries.
-2. Execute python kiloColorCounter.py \<number of kilobots to track\>
 
+1.1 You might also install pandas and shutil libraries.
+
+3. Execute python kiloColorCounter.py \<number of kilobots to track\>
+
+4. The results are placed at result.txt with the following format:
+
+\<File name\>      \<color\> \<number of kilobots of that color\> \<total number of kilobots in the file\>
+
+For example:
+
+output0053.jpg green 10 37
 
 ## Detailed doc
 
