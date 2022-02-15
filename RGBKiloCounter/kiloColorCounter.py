@@ -7,8 +7,8 @@ import sys
 try:
     kilobots = sys.argv[1]
     print(' ')
-    print("kilocounter is tracking colors expecting "+str(kilobots)+" kilobots!")
-    print("Hi I am kiloRGBcounter, I am capable of tracking R, G or B colors. For further extensions please hold in the line")
+    print("kilocounter is tracking R, G, B colors expecting "+str(kilobots)+" kilobots!")
+#    print("Hi I am kiloRGBcounter, I am capable of tracking R, G or B colors. For further extensions please hold in the line")
     print('')
 except IndexError:
     print('Please provide the number of kilobots you expect to track!')

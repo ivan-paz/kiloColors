@@ -6,6 +6,7 @@ import sys
 #kilobots = 37
 kilobots = sys.argv[1]
 kilobots = int(kilobots)
+
 # remove images in the folder
 path = os.chdir('./evil_images')
 files = os.listdir(path)

@@ -30,6 +30,8 @@ results_difference_of_gaussian.txt
 
 the script countDifferenceOfGaussian.py checks if the number of detected blobs is less than the expected.
 
+### Please note that
+
 THE ACTUAL VERSION OF THE SCRIPT COUNTS VALID THE NUMBER-OF-KILOBOTS AND THE NIMBER-OF-KILOBOTS + 1 BECAUSE OF THE CURRENT EXPERIMENTS.
 
 images NOT SATISFYING SUCH CONDITION are copied to problematicImages

@@ -29,15 +29,13 @@ with open("results.txt",'r') as file:
             #print(word)
 
 # Printing total number of words
-print(number_of_words)
+#print(len(word_list.unique()))
 print(word_list)
-
+print(len(set(word_list)))
 
 from collections import Counter
 import numpy as np
 import matplotlib.pyplot as plt
-
-#word_list = ['A', 'A', 'B', 'B', 'A', 'C', 'C', 'C', 'C']
 
 counts = Counter(word_list)
 
