@@ -1,7 +1,12 @@
 # kiloCounter 
 
+## Quick start
+1. install scikit-image library (this depends on your operation system)
+1.1 You might also install pandas and shutil libraries.
+2. Execute python kiloColorCounter.py \<number of kilobots to track\>
 
-Execute python kiloColorCounter.py \<number of kilobots to track\>
+
+## Detailed doc
 
 Images/ contains the images to analyze.
 
