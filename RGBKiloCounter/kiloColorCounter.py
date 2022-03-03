@@ -16,7 +16,7 @@ parser.add_argument('-i', '--input', type=str, metavar='',
 parser.add_argument('-o', '--output', type=str, metavar='',
                     help='name of the output file, default is results.txt', default='results.txt')
 parser.add_argument('-e', '--evil_dir', type=str, metavar='',
-                    help='folder to copy the evil images, default is None', default=None)
+                    help='folder to copy the evil images, default is None', default='./Evil')
 parser.add_argument('-n', '--n_processors', type=int, metavar='',
                     help='the number of threads to parallelize the computation, default is os.cpu_count()', default=os.cpu_count())
 parser.add_argument('-v', '--verbose', help='activate on_the_fly feedback',
@@ -43,13 +43,15 @@ print(f'\tCopying evil images to \"{evil}\".\n\t\t\t\tHERE WE GO!\n')
 def parallel_computing(file):
     path = os.path.join(input, file)
 
+    # THIS SIGMA=2.7 HAS TO BE COMPUTED WITH DoG RO LoG BEFORE
+    # THE MAIN COLOR COUNTING BUT, SO FAR, ALL BLOBS ARE ARROUND SIGMA=2.7
     RGB = methods.single_sigma_search(path, kilobots, 2.7)
     detected_blobs = sum(RGB)
     valid = (detected_blobs == kilobots or
              detected_blobs == (kilobots + 1))
 
     if valid:
-        method = 'DoG'
+        method = 'MoG'  # Maxims of the Gausian filtered image
     else:
 
         RGB = methods.LoG_countBlobs(path)
@@ -107,7 +109,7 @@ def main():
             dst = os.path.join(evil, file)
             shutil.copyfile(src, dst)
 
-    print(f'\n\t{n_DoG} images ({100*n_DoG/n_images:.1f}%) succeded with DoG')
+    print(f'\n\t{n_DoG} images ({100*n_DoG/n_images:.1f}%) succeded with MoG')
     print(f'\t{n_LoG} images ({100*n_LoG/n_images:.1f}%) succeded with LoG')
     print(f'\t{n_evil} images ({100*n_evil/n_images:.1f}%) are evil images\n')
 
