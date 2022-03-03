@@ -43,7 +43,7 @@ print(f'\tCopying evil images to \"{evil}\".\n\t\t\t\tHERE WE GO!\n')
 def parallel_computing(file):
     path = os.path.join(input, file)
 
-    RGB = methods.DoG_countBlobs(path)
+    RGB = methods.single_sigma_search(path, kilobots, 2.7)
     detected_blobs = sum(RGB)
     valid = (detected_blobs == kilobots or
              detected_blobs == (kilobots + 1))
