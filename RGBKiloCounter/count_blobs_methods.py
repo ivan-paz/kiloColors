@@ -1,6 +1,7 @@
-from skimage.io import imread
-from skimage.feature import blob_dog, blob_log, peak_local_max
-from skimage.color import rgb2gray
+# from skimage.io import imread
+# from skimage.feature import blob_dog, blob_log
+from skimage.feature import peak_local_max
+# from skimage.color import rgb2gray
 from scipy.ndimage import gaussian_filter
 from numpy import sum
 import numpy as np
@@ -8,7 +9,8 @@ import matplotlib.pyplot as plt
 import os
 
 
-def print_image_with_blobs(file, im, coord, colors):
+def print_image_with_blobs(path, im, coord, colors):
+    path = os.path.splitext(path)[0] + '.png'
 
     color_names = ['r', 'g', 'b']
 
@@ -22,38 +24,19 @@ def print_image_with_blobs(file, im, coord, colors):
         ax.add_patch(
             plt.Circle(point[::-1], 20, color=color_names[color], fill=False, lw=0.5))
     plt.subplots_adjust(0, 0, 1, 1)
-    fig.savefig('checks/' + os.path.basename(file))
+    fig.savefig(path)
     plt.close('all')
 
 
-def single_sigma_search(file, n_blobs, sigma):
+def single_sigma_search(im, n_blobs, sigma):
 
-    im = imread(file)
     im_gray = sum(im, axis=-1)
     gaus = gaussian_filter(im_gray, sigma=sigma, truncate=2)
-    gaus = gaus - np.min(gaus)
-    coord = peak_local_max(gaus, min_distance=6,
+    coord = peak_local_max(gaus - np.min(gaus), min_distance=4,
                            num_peaks=n_blobs, threshold_rel=0.1)
-    #
 
-    # WE NEED SOME TYPE OF DOUBLE-CHECK TO VERIFY THE CORRECT BLOB DETECTION
-    # CHECK ONE: LOOK FOR n_blobs+1 AND SEE IF THE LEAST BRIGHT BLOB IS BACKGROUND
-    # WHAT HAPPENS WHEN SOME KILOBOT IS OF IN THIS FRAME?
+    return coord
 
-    # min_bright = peak_bright(gaus, coord[-1], int(sigma) + 1)
-    # for point in coord:
-    #     # print(peak_bright(gaus, point, int(sigma) + 1), end=' ')
-    #     print(gaus[point[0], point[1]], end=' ')
-    # print()
-
-    colors = getColors(im, coord)
-
-    # WE CAN PUT SOME FLAG TO PRINT ALL FRAMES WITH DETECTED BLOBS
-    if len(coord) != n_blobs:
-        print_image_with_blobs(file, im, coord, colors)
-
-    # Return the counts of each color (number of Red blobs, Greens and Blues)
-    return np.bincount(colors, minlength=3)
 
 
 # def DoG_countBlobs(file):
