@@ -1,0 +1,3 @@
+image,color,kilobots
+out110.jpg, blue, 38
+out110.jpg, red, 1
