@@ -72,22 +72,17 @@ def getColors(image,blobs):
         #print("colour_in_YCbCr: ", colour_in_YCbCr)
 
         color = colorMinDistance(central_pixel_rgb)
-        assigned_color.append(color)
+
+        if(color=='cyan'):
+            print("this is cyan!!")
+            if(central_pixel_rgb[1]<200):
+                color = 'blue'
+            assigned_color.append(color)
+        else:
+            assigned_color.append(color)
         print("Assigned Color by a fancy metric == ",color)
         print("-------------------------------------")
 
-
-        #fig, ax = plt.subplots()
-        ##ax = axes.ravel()
-        ##ax[idx].set_title(title)
-        #ax.imshow(image)
-        #for blob in blobs:
-        #    y, x, r = blob
-        #    c = plt.Circle((x, y), r, color=color, linewidth=2, fill=False)
-        #    ax.add_patch(c)
-        #    ax.set_axis_off()
-        #    plt.tight_layout()
-        #    #plt.show()
 
         #central_pixel_rgb.argmax(axis=0)
         if central_pixel_rgb.argmax(axis=0)==0:
