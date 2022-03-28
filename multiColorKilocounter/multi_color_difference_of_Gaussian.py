@@ -73,6 +73,8 @@ def getColors(image,blobs):
 
         color = colorMinDistance(central_pixel_rgb)
 
+        # Dirty hack to fix color detection
+
         if(color=='cyan'):
             print("this is cyan!!")
             if(central_pixel_rgb[1]<200):
@@ -80,6 +82,17 @@ def getColors(image,blobs):
             assigned_color.append(color)
         else:
             assigned_color.append(color)
+        
+
+        if(color=='red'):
+            print("this is red!!")
+            if(central_pixel_rgb[0]<150):
+                color = 'yellow'
+            assigned_color.append(color)
+        else:
+            assigned_color.append(color)
+        
+
         print("Assigned Color by a fancy metric == ",color)
         print("-------------------------------------")
 
