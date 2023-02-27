@@ -7,7 +7,7 @@ from tqdm import tqdm
 import argparse
 from numpy import bincount
 import os
-
+# main script to be executer in terminal
 
 parser = argparse.ArgumentParser(
     description='Kilocounter tracks R, G, B colors from kilobots video frames')
